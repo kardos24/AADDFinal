@@ -1,0 +1,6 @@
+<Context docBase="PracticaAADDFinal" path="/PracticaAADDFinal"
+	reloadable="true" source="org.eclipse.jst.jee.server:PracticaAADDFinal">
+	<Resource name="jdbc/AADD" auth="Container" type="javax.sql.DataSource"
+		driverClassName="com.mysql.jdbc.Driver" url="jdbc:mysql://localhost:3306/aadd"
+		username="root" password="" />
+</Context>
