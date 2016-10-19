@@ -24,18 +24,17 @@ import controlador.Controlador;
 @WebServlet(urlPatterns = { "/ServletLogin", "/index.html" }, initParams = { @WebInitParam(name = "admin", value = "admin", description = "Valor de usuario antes de tener persistencia") })
 public class ServletLogin extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	
+
 	private String claveAdmin;
 
 	public ServletLogin() {
 		super();
 	}
-	
-//	public void init(ServletConfig config){
-//		super.init(config);
-//		claveAdmin = config.getInitParameter("admin");
-//	}
-		
+
+	// public void init(ServletConfig config){
+	// super.init(config);
+	// claveAdmin = config.getInitParameter("admin");
+	// }
 
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
@@ -57,54 +56,52 @@ public class ServletLogin extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException {
 		String usuario = request.getParameter("usuario");
 		String clave = request.getParameter("clave");
-		
-		
+
 		HttpSession sesion = request.getSession();
 		Integer numIntentos = (Integer) sesion.getAttribute("numeroIntentos");
-		
-		if(Objects.nonNull(numIntentos)){
+
+		if (Objects.nonNull(numIntentos)) {
 			numIntentos++;
 		} else {
 			numIntentos = 1;
 		}
 		sesion.setAttribute("numeroIntentos", numIntentos);
-		if(numIntentos > 3){
+		if (numIntentos > 3) {
 			response.sendError(500, "Número de intentos superado");
 			return;
 		}
 
-//		if(Controlador.getInstance().login(usuario, clave)){
-		String claveUsuario = getServletConfig().getInitParameter(usuario);
-		
-		
 		@SuppressWarnings("unchecked")
-			Map<String, Date> usuarios = (Map<String, Date>) getServletConfig().getServletContext().getAttribute("usuario");
-			if(usuarios == null){
-				usuarios = new HashMap<String, Date>();
-				getServletConfig().getServletContext().setAttribute("usuario", usuarios);
-			}
-			if(usuarios.get(usuario) != null){
-				response.sendError(500, "USUARIO YA LOGUEADO EN OTRA SESIÓN : " + usuarios.get(usuario));
-				return;
-			}
-			
-			
-			
+		Map<String, Date> usuarios = (Map<String, Date>) getServletConfig()
+				.getServletContext().getAttribute("usuario");
+		if (usuarios == null) {
+			usuarios = new HashMap<String, Date>();
+			getServletConfig().getServletContext().setAttribute("usuario",
+					usuarios);
+		}
+		if (usuarios.get(usuario) != null) {
+			response.sendError(500, "USUARIO YA LOGUEADO EN OTRA SESIÓN : "
+					+ usuarios.get(usuario));
+			return;
+		}
+
 		boolean error = true;
-		if(claveUsuario != null && Objects.equals(clave,claveUsuario))	{
+		// String claveUsuario = getServletConfig().getInitParameter(usuario);
+		// if(claveUsuario != null && Objects.equals(clave,claveUsuario)) {
+		if (!Controlador.getInstance().login(usuario, clave)) {
 			sesion.setAttribute("numeroIntentos", new Integer(0));
 			sesion.setAttribute("usuario_actual", usuario);
 			error = false;
 		}
-		
-		if(!error){
+
+		if (!error) {
 			usuarios.put(usuario, new Date());
-			
+
 			RequestDispatcher rd = request.getRequestDispatcher("ServletMain");
 			request.setAttribute("usuario_actual", usuario);
 			rd.forward(request, response);
-//			PrintWriter out = response.getWriter();
-//			out.println("Autentificación correcta");
+			// PrintWriter out = response.getWriter();
+			// out.println("Autentificación correcta");
 		} else {
 			response.sendRedirect("error.html");
 		}

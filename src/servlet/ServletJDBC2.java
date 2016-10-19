@@ -20,18 +20,10 @@ import javax.sql.DataSource;
 public class ServletJDBC2 extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	/**
-	 * @see HttpServlet#HttpServlet()
-	 */
 	public ServletJDBC2() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		try {
@@ -41,11 +33,11 @@ public class ServletJDBC2 extends HttpServlet {
 			Connection con = ds.getConnection();
 			if (con != null)
 				System.out.println("CONEXIÓN ESTABLECIDA!!!!!!!");
+			
+			con.close();
 		} catch (NamingException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
