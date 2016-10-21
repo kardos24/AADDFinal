@@ -29,7 +29,7 @@ public class ServletRegistrarUsuario extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Controlador.getInstance().registrar("48999999H", "daniel", "kardos", "clave", "email");
+		Controlador.getInstance().registrar("5555555H", "adminName", "admin", "admin", "admin@admin.ad");
 	}
 
 	/**

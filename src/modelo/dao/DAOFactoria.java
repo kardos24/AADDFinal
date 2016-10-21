@@ -8,13 +8,21 @@ public abstract class DAOFactoria {
 
 	// Declaracion como constantes de los tipos de factoria
 	public final static int JDBC = 1;
+	public final static int JPA = 2;
 	public final static int MYSQL = 1;
 
 	public static DAOFactoria getDAOFactoria(int tipo) throws DAOException {
 		switch (tipo) {
-		case MYSQL: {
+		case JDBC: {
 			try {
 				return new JDBCDAOFactoria();
+			} catch (Exception e) {
+				throw new DAOException(e.getMessage());
+			}
+		}
+		case JPA: {
+			try {
+				return new JPADAOFactoria();
 			} catch (Exception e) {
 				throw new DAOException(e.getMessage());
 			}

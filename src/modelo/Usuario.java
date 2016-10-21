@@ -3,17 +3,22 @@ package modelo;
 import java.util.LinkedList;
 import java.util.List;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
+@Entity
 public class Usuario {
 	private String nif;
 	private String nombre;
+	@Id
 	private String usuario;
 	private String clave;
 	private String email;
-	
+	@OneToMany(mappedBy = "usuario")
 	private List<Catalogo> catalogos;
-	
-	public Usuario(){
-		
+
+	public Usuario() {
 	}
 
 	public Usuario(String nif, String nombre, String usuario, String clave,
@@ -74,7 +79,5 @@ public class Usuario {
 	public void setCatalogos(List<Catalogo> catalogos) {
 		this.catalogos = catalogos;
 	}
-	
-	
 
 }

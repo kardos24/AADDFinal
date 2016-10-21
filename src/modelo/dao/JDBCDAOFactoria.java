@@ -12,7 +12,7 @@ public class JDBCDAOFactoria extends DAOFactoria {
 
 	public JDBCDAOFactoria() throws DAOException, ClassNotFoundException,
 			java.sql.SQLException {
-		ds = ConnectionPool.getInstance("jdbc:mysql://localhost:3306/aadd","root", "");
+//		ds = ConnectionPool.getInstance("jdbc:mysql://localhost:3306/aadd","root", "");
 		
 		try {
 			InitialContext contexto = new InitialContext();

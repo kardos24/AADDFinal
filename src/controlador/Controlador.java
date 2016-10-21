@@ -15,7 +15,7 @@ public class Controlador {
 
 	private Controlador() {
 		try {
-			factoria = DAOFactoria.getDAOFactoria(DAOFactoria.JDBC);
+			factoria = DAOFactoria.getDAOFactoria(DAOFactoria.JPA);
 		} catch (DAOException e) {
 			e.printStackTrace();
 		}
