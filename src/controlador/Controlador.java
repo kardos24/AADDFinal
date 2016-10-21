@@ -2,6 +2,7 @@ package controlador;
 
 import java.util.Objects;
 
+import modelo.Catalogo;
 import modelo.Usuario;
 import modelo.dao.DAOException;
 import modelo.dao.DAOFactoria;
@@ -51,6 +52,16 @@ public class Controlador {
 			e.printStackTrace();
 		}
 		return null;
+	}
+	
+	public void addCatalogo(Usuario usuario, Catalogo catalogo){
+
+		usuario.getCatalogos().add(catalogo);
+		try {
+			factoria.getUsuarioDAO().update(usuario);
+		} catch (DAOException e) {
+			e.printStackTrace();
+		}
 	}
 
 }

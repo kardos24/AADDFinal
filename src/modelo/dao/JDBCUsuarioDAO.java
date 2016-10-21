@@ -49,15 +49,44 @@ public class JDBCUsuarioDAO implements UsuarioDAO {
 	}
 
 	@Override
-	public Usuario addCatalogo(Usuario usuario, Catalogo catalogo)
-			throws DAOException {
+	public void update(Usuario usuario)throws DAOException {
 
 		Connection con = null;
 		PreparedStatement stmt = null;
 		try {
 			con = ds.getConnection();
-			stmt = con
-					.prepareStatement("UPDATE Catalogo SET usuario= ? WHERE nombre =  ?");
+			stmt = con.prepareStatement("UPDATE USUARIO SET nif = ?,nombre = ?,clave = ?,email = ? WHERE usuario =  ?");
+			stmt.setString(1, usuario.getNif());
+			stmt.setString(2, usuario.getNombre());
+			stmt.setString(3, usuario.getClave());
+			stmt.setString(4, usuario.getEmail());
+			stmt.setString(5, usuario.getUsuario());
+			stmt.executeUpdate();
+
+			stmt = con.prepareStatement("UPDATE Catalogo SET usuario = ? WHERE nombre =  ?");
+			for(Catalogo catalogo : usuario.getCatalogos()){
+				stmt.setString(1, usuario.getUsuario());
+				stmt.setString(2, catalogo.getNombre());
+				stmt.executeUpdate();				
+			}
+			
+			stmt.close();
+			con.close();
+
+		} catch (SQLException e) {
+			throw new DAOException(e.getMessage());
+		}
+
+	}
+
+	@Deprecated
+	public Usuario addCatalogo(Usuario usuario, Catalogo catalogo)throws DAOException {
+
+		Connection con = null;
+		PreparedStatement stmt = null;
+		try {
+			con = ds.getConnection();
+			stmt = con.prepareStatement("UPDATE Catalogo SET usuario= ? WHERE nombre =  ?");
 			stmt.setString(1, usuario.getUsuario());
 			stmt.setString(2, catalogo.getNombre());
 
