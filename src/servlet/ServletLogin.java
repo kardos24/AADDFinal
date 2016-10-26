@@ -85,13 +85,13 @@ public class ServletLogin extends HttpServlet {
 			return;
 		}
 
-		boolean error = true;
+		boolean error = false;
 		// String claveUsuario = getServletConfig().getInitParameter(usuario);
 		// if(claveUsuario != null && Objects.equals(clave,claveUsuario)) {
 		if (!Controlador.getInstance().login(usuario, clave)) {
 			sesion.setAttribute("numeroIntentos", new Integer(0));
 			sesion.setAttribute("usuario_actual", usuario);
-			error = false;
+			error = true;
 		}
 
 		if (!error) {

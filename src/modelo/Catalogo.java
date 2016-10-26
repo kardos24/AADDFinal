@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OrderBy;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -27,6 +28,8 @@ public class Catalogo {
 	private List<Categoria> categorias;
 	@ManyToOne
 	private Usuario usuario;
+	@OneToMany(mappedBy="catalogo")
+	private List<Item> items;
 
 	public Catalogo() {
 	}
@@ -88,6 +91,18 @@ public class Catalogo {
 
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
+	}
+
+	public List<Item> getItems() {
+		return items;
+	}
+
+	public void setItems(List<Item> items) {
+		this.items = items;
+	}
+	
+	public void addItem(Item item){
+		items.add(item);
 	}
 
 }

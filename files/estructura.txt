@@ -1,0 +1,4 @@
+col 0 = nombre
+col 1 = fecha
+col 2 = foto
+col 3 = nick
