@@ -3,10 +3,12 @@ package modelo.dao;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 
+import org.eclipse.persistence.exceptions.DatabaseException;
+
 import modelo.Usuario;
 
 public class JPADAOUsuario implements UsuarioDAO {
-	
+
 	private EntityManager em;
 
 	public JPADAOUsuario(EntityManagerFactory emf) {
@@ -16,11 +18,15 @@ public class JPADAOUsuario implements UsuarioDAO {
 	@Override
 	public Usuario create(String nif, String nombre, String usuario,
 			String clave, String email) throws DAOException {
-		em.getTransaction().begin();
-		Usuario usuJPA = new Usuario(nif,nombre, usuario, clave, email);
-		em.persist(usuJPA);
-		em.getTransaction().commit();
-		return usuJPA;
+		try {
+			em.getTransaction().begin();
+			Usuario usuJPA = new Usuario(nif, nombre, usuario, clave, email);
+			em.persist(usuJPA);
+			em.getTransaction().commit();
+			return usuJPA;
+		} catch (Exception ex) {
+			throw new DAOException(ex.getMessage());
+		}
 	}
 
 	@Override

@@ -41,8 +41,8 @@ public class FrontController extends HttpServlet {
 		// Utiliza una clase Helper para analizar la acción a realizar
 		PeticionHelper peticionHelper = new PeticionHelper(request,
 				dirAplicacion);
-
-		Accion acc = peticionHelper.getAccion();
+System.out.println("FrontController.procesa()");
+		Accion acc = peticionHelper.getAccion1();
 
 		ServletContext aplicacion = getServletConfig().getServletContext();
 		String vista = acc.ejecutar(request, response, aplicacion);

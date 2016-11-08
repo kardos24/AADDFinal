@@ -3,6 +3,7 @@ package mvc;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import modelo.Usuario;
 import controlador.Controlador;
@@ -22,7 +23,11 @@ public class AccionRegistrarUsuario implements Accion {
 		Usuario usu = Controlador.getInstance().registrar(nif, nombre, usuario,
 				clave, mail);
 
-		if(usu == null) return "error.jsp";
+		if(usu == null) {
+			HttpSession sesion = request.getSession();
+			sesion.setAttribute("nombre", nombre);
+			return "error.jsp";
+		}
 		return "index.html";
 	}
 

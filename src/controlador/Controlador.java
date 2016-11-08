@@ -49,9 +49,9 @@ public class Controlador {
 			usuarioDAO = factoria.getUsuarioDAO();
 			return usuarioDAO.create(nif, nombre, usuario, clave, email);
 		} catch (DAOException e) {
-			e.printStackTrace();
+			return null;
 		}
-		return null;
+		
 	}
 	
 	public void addCatalogo(Usuario usuario, Catalogo catalogo){

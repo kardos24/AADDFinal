@@ -8,8 +8,16 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form>
-Nombre : <input/>
+<form action="registroUsuario.event" method="post">
+
+Nombre : <input name="nombre" /><br/>
+Usuario : <input name="usuario" /><br/>
+Clave : <input name="clave" /><br/>
+Nif : <input name="nif" /><br/>
+Email : <input name="mail" /><br/>
+
+<input name="confirmar" type="submit" value="Registrar" />
+
 </form>
 
 </body>
