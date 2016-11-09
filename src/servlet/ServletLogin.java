@@ -26,6 +26,7 @@ public class ServletLogin extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	private String claveAdmin;
+	private String nombre;
 
 	public ServletLogin() {
 		super();
@@ -38,17 +39,29 @@ public class ServletLogin extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		response.setContentType("text/html");
-		PrintWriter out = response.getWriter();
-		// Obtenemos la ruta física el fichero del formulario
-		String pathFichero = getServletConfig().getServletContext()
-				.getRealPath("login.html");
-		// Tenemos el formulario vacío en el fichero "login.htm"
-		BufferedReader br = new BufferedReader(new FileReader(pathFichero));
-		String linea;
-		while ((linea = br.readLine()) != null)
-			out.println(linea);
-		br.close();
+		HttpSession sesion = request.getSession();
+		nombre = (String) sesion.getAttribute("usuario_actual");
+		
+		if (nombre != null) {
+			RequestDispatcher rd = request.getRequestDispatcher("main.jsp");
+			try {
+				rd.forward(request, response);
+			} catch (IOException | ServletException e) {
+				e.printStackTrace();
+			} 
+		} else {
+			response.setContentType("text/html");
+			PrintWriter out = response.getWriter();
+			// Obtenemos la ruta física el fichero del formulario
+			String pathFichero = getServletConfig().getServletContext()
+					.getRealPath("login.html");
+			// Tenemos el formulario vacío en el fichero "login.htm"
+			BufferedReader br = new BufferedReader(new FileReader(pathFichero));
+			String linea;
+			while ((linea = br.readLine()) != null)
+				out.println(linea);
+			br.close();
+		}
 
 	}
 
@@ -90,7 +103,6 @@ public class ServletLogin extends HttpServlet {
 		// if(claveUsuario != null && Objects.equals(clave,claveUsuario)) {
 		if (!Controlador.getInstance().login(usuario, clave)) {
 			sesion.setAttribute("numeroIntentos", new Integer(0));
-			sesion.setAttribute("usuario_actual", usuario);
 			error = true;
 		}
 
@@ -99,6 +111,7 @@ public class ServletLogin extends HttpServlet {
 
 			RequestDispatcher rd = request.getRequestDispatcher("ServletMain");
 			request.setAttribute("usuario_actual", usuario);
+			sesion.setAttribute("usuario_actual", usuario);
 			rd.forward(request, response);
 			// PrintWriter out = response.getWriter();
 			// out.println("Autentificación correcta");
