@@ -1,19 +1,30 @@
 package modelo.dao;
 
+import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 
+import modelo.Catalogo;
 import modelo.Categoria;
 
 public class JPADAOCategoria implements CategoriaDAO {
 
+	private EntityManager em;
+
 	public JPADAOCategoria(EntityManagerFactory emf) {
-		// TODO Auto-generated constructor stub
+		em = emf.createEntityManager();
 	}
 
 	@Override
 	public Categoria create(String nombre) throws DAOException {
-		// TODO Auto-generated method stub
-		return null;
+		try {
+			em.getTransaction().begin();
+			Categoria categoJPA = new Categoria(nombre);
+			em.persist(categoJPA);
+			em.getTransaction().commit();
+			return categoJPA;
+		} catch (Exception ex) {
+			throw new DAOException(ex.getMessage());
+		}
 	}
 
 }

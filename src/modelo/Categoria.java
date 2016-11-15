@@ -16,9 +16,8 @@ public class Categoria {
 	public Categoria() {
 	}
 
-	public Categoria(int codigo, String nombre) {
+	public Categoria(String nombre) {
 		super();
-		this.codigo = codigo;
 		this.nombre = nombre;
 	}
 

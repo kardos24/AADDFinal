@@ -1,5 +1,6 @@
 package controlador;
 
+import java.util.LinkedList;
 import java.util.Objects;
 
 
@@ -69,9 +70,19 @@ public class Controlador {
 	}
 
 	public List<Catalogo> recuperarCatalogosPorUsuario(String usuario) {
-		CatalogoDAO catalogoDAO = factoria.getCatalogoDAO();
-		List<Catalogo> lista = catalogoDAO.findByUsuario(usuario);
-		return lista;
+		UsuarioDAO usuarioDAO = factoria.getUsuarioDAO();
+		Usuario usu;
+		try {
+			usu = usuarioDAO.findByUsuario(usuario);
+			return usu.getCatalogos();
+		} catch (DAOException e) {
+			return new LinkedList<Catalogo>();
+		}
+		
+//		
+//		CatalogoDAO catalogoDAO = factoria.getCatalogoDAO();
+//		List<Catalogo> lista = catalogoDAO.findByUsuario(usuario);
+//		return lista;
 	}
 
 

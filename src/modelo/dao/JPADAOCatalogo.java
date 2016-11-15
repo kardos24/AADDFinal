@@ -3,6 +3,7 @@ package modelo.dao;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 
 import modelo.Catalogo;
@@ -10,27 +11,30 @@ import modelo.Usuario;
 
 public class JPADAOCatalogo implements CatalogoDAO {
 
+	private EntityManager em;
+
 	public JPADAOCatalogo(EntityManagerFactory emf) {
-		// TODO Auto-generated constructor stub
+		em = emf.createEntityManager();
 	}
 
 	@Override
 	public Catalogo create(String nombre, Date fecha, String web, String url,
 			Usuario usuario) throws DAOException {
-		// TODO Auto-generated method stub
-		return null;
+		try {
+			em.getTransaction().begin();
+			Catalogo cataJPA = new Catalogo(nombre, fecha, web, url, usuario);
+			em.persist(cataJPA);
+			em.getTransaction().commit();
+			return cataJPA;
+		} catch (Exception ex) {
+			throw new DAOException(ex.getMessage());
+		}
 	}
 
 	@Override
 	public Catalogo findByNombre(String nombre) throws DAOException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<Catalogo> findByUsuario(String usuario) {
-		// TODO Auto-generated method stub
-		return null;
+		Catalogo catJPA = em.find(Catalogo.class, nombre);
+		return catJPA;
 	}
 
 }

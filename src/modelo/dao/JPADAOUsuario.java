@@ -3,8 +3,6 @@ package modelo.dao;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 
-import org.eclipse.persistence.exceptions.DatabaseException;
-
 import modelo.Usuario;
 
 public class JPADAOUsuario implements UsuarioDAO {
@@ -31,7 +29,14 @@ public class JPADAOUsuario implements UsuarioDAO {
 
 	@Override
 	public void update(Usuario usuario) throws DAOException {
-		// TODO Auto-generated method stub
+		// en teoría no hace falta modificar el objeto porque jpa va persistiendo conforme cambias el objeto
+//		try{
+//			em.getTransaction().begin();
+//			em.merge(usuario);
+//			em.getTransaction().commit();
+//		} catch (Exception ex){
+//			throw new DAOException(ex.getMessage());
+//		}
 
 	}
 
