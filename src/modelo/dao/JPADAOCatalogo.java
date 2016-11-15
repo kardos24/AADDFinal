@@ -1,6 +1,7 @@
 package modelo.dao;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.EntityManagerFactory;
 
@@ -22,6 +23,12 @@ public class JPADAOCatalogo implements CatalogoDAO {
 
 	@Override
 	public Catalogo findByNombre(String nombre) throws DAOException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Catalogo> findByUsuario(String usuario) {
 		// TODO Auto-generated method stub
 		return null;
 	}

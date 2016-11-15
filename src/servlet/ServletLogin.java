@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
@@ -19,6 +20,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import modelo.Catalogo;
 import controlador.Controlador;
 
 @WebServlet(urlPatterns = { "/ServletLogin", "/index.html" }, initParams = { @WebInitParam(name = "admin", value = "admin", description = "Valor de usuario antes de tener persistencia") })
@@ -112,6 +114,9 @@ public class ServletLogin extends HttpServlet {
 			RequestDispatcher rd = request.getRequestDispatcher("ServletMain");
 			request.setAttribute("usuario_actual", usuario);
 			sesion.setAttribute("usuario_actual", usuario);
+			
+			List<Catalogo> listCat = Controlador.getInstance().recuperarCatalogosPorUsuario(usuario);
+			sesion.setAttribute("listaCatalogos", listCat);
 			rd.forward(request, response);
 			// PrintWriter out = response.getWriter();
 			// out.println("Autentificación correcta");

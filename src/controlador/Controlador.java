@@ -2,8 +2,12 @@ package controlador;
 
 import java.util.Objects;
 
+
+import java.util.List;
+
 import modelo.Catalogo;
 import modelo.Usuario;
+import modelo.dao.CatalogoDAO;
 import modelo.dao.DAOException;
 import modelo.dao.DAOFactoria;
 import modelo.dao.UsuarioDAO;
@@ -63,5 +67,13 @@ public class Controlador {
 			e.printStackTrace();
 		}
 	}
+
+	public List<Catalogo> recuperarCatalogosPorUsuario(String usuario) {
+		CatalogoDAO catalogoDAO = factoria.getCatalogoDAO();
+		List<Catalogo> lista = catalogoDAO.findByUsuario(usuario);
+		return lista;
+	}
+
+
 
 }
