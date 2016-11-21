@@ -85,6 +85,12 @@ public class Controlador {
 //		return lista;
 	}
 
+	public List<Usuario> recuperarUsuarios() {
+		UsuarioDAO usuarioDao = factoria.getUsuarioDAO();
+//		return usuarioDao.findAll();
+		return null;
+	}
+
 
 
 }

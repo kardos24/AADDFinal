@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<faces-config version="2.2"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee">
+	<application>
+		<message-bundle>resources.application</message-bundle>
+		<locale-config>
+			<default-locale>es</default-locale>
+			<supported-locale>en</supported-locale>
+		</locale-config>
+	</application>
+	<managed-bean>
+		<managed-bean-name>localeManagerBean</managed-bean-name>
+		<managed-bean-class>beans.LocaleManagerBean</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>registroUsuarioBean</managed-bean-name>
+		<managed-bean-class>beans.RegistroUsuarioBean</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+	<navigation-rule>
+		<display-name>registrarUsuario</display-name>
+		<from-view-id>/registrarUsuario.jsp</from-view-id>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>registrarUsuario</display-name>
+		<from-view-id>/registrarUsuario.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>error_registro</from-outcome>
+			<to-view-id>/errorRegistroUsuario.jsp</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>errorRegistroUsuario</display-name>
+		<from-view-id>/errorRegistroUsuario.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>volver</from-outcome>
+			<to-view-id>/registrarUsuario.jsp</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>errorRegistroUsuario</display-name>
+		<from-view-id>/errorRegistroUsuario.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>login</from-outcome>
+			<to-view-id>/ServletLogin</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>registrarUsuario</display-name>
+		<from-view-id>/registrarUsuario.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>exito</from-outcome>
+			<to-view-id>/main.jsp</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+</faces-config>
