@@ -5,70 +5,81 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:aadd="http://java.sun.com/jsf/composite/componentes/aadd"> 
+	xmlns:aadd="http://java.sun.com/jsf/composite/componentes/aadd"
+	xmlns:p="http://primefaces.org/ui">
 
 <ui:composition template="basicTemplate">
+	<ui:define name="title">
+	    Gestor de Usuario <br/>
+	</ui:define>
 	<ui:define name="header">
-	    Cabecera de la pagina JSP2
+	    Cabecera de la pagina JSP2 <br/>
 	</ui:define>
 	<ui:define name="content">
-	    <h:form>
-			<!-- Esto ejecutara el setLanguage -->
-			<h:selectOneMenu value="#{localeManagerBean.language}"
-				onchange="submit()">
-				<f:selectItem itemValue="es" itemLabel="Español" />
-				<f:selectItem itemValue="en" itemLabel="English" />
-			</h:selectOneMenu>
+		<h:form>
+			<p:panel>
+				<p:panelGrid>
+					<br />
+					<p:dataTable id="tablaUsuarios"
+						value="#{listarUsuariosBean.usuarios}" var="usuario">
+						<p:column headerText="Usuario">
+							<h:outputText value="#{usuario.usuario }">
+							</h:outputText>
+
+						</p:column>
+						<p:column headerText="Nombre">
+							<h:outputText value="#{usuario.nombre }">
+							</h:outputText>
+
+						</p:column>
+						<p:column headerText="Correo">
+							<h:outputText value="#{usuario.mail }">
+							</h:outputText>
+
+						</p:column>
+						<p:column headerText="Nif">
+							<h:outputText value="#{usuario.nif }">
+							</h:outputText>
+
+						</p:column>
+						<p:column>
+							<h:commandButton value="Seleccionar" id="Seleccionar"
+								action="verDetalleUsuario"
+								actionListener="#{listarUsuariosBean.seleccionarUsuarios }">
+								<f:param id="id_usuario" value="#{usuario.usuario }" />
+							</h:commandButton>
+						</p:column>
+					</p:dataTable>
+				</p:panelGrid>
+			</p:panel>
 			<br />
-			<h:dataTable id="tablaUsuarios"
-				value="#{listarUsuariosBean.usuarios}" var="usuario">
-				<h:column>
-					<f:facet name="header">
-						<h:outputText value="Usuario" />
-					</f:facet>
-					<h:outputText value="#{usuario.usuario }">
-					</h:outputText>
-
-				</h:column>
-				<h:column>
-					<f:facet name="header">
-						<h:outputText value="Nombre" />
-					</f:facet>
-					<h:outputText value="#{usuario.nombre }">
-					</h:outputText>
-
-				</h:column>
-				<h:column>
-					<f:facet name="header">
-						<h:outputText value="Correo" />
-					</f:facet>
-					<h:outputText value="#{usuario.mail }">
-					</h:outputText>
-
-				</h:column>
-				<h:column>
-					<f:facet name="header">
-						<h:outputText value="Nif" />
-					</f:facet>
-					<h:outputText value="#{usuario.nif }">
-					</h:outputText>
-
-				</h:column>
-				<h:column>
-					<h:commandButton value="Seleccionar" id="Seleccionar" action="verDetalleUsuario"
-						actionListener="#{listarUsuariosBean.seleccionarUsuarios }">
-						<f:param id="id_usuario" value="#{usuario.usuario }" />
-					</h:commandButton>
-				</h:column>
-
-			</h:dataTable>
-			<br>
 			<h:outputText value="#{listarUsuariosBean.usuarioSeleccionado}" />
 		</h:form>
 		<br />
 	</ui:define>
 	<ui:define name="footer">
-	    <aadd:usuarios tabla="Usuarios de mi APP"/>
+		<p:dataTable id="basicDT" var="car" value="#{dtSelectionView.cars1}">
+        <f:facet name="header">
+            Basic
+        </f:facet>
+        <p:column headerText="Id">
+            <h:outputText value="#{car.id}" />
+        </p:column>
+        <p:column headerText="Year">
+            <h:outputText value="#{car.year}" />
+        </p:column>
+        <p:column headerText="Brand">
+            <h:outputText value="#{car.brand}" />
+        </p:column>
+        <p:column headerText="Color">
+            <h:outputText value="#{car.color}" />
+        </p:column>
+        <p:column style="width:32px;text-align: center">
+             <p:commandButton update=":form:carDetail" oncomplete="PF('carDialog').show()" icon="ui-icon-search" title="View">
+                <f:setPropertyActionListener value="#{car}" target="#{dtSelectionView.selectedCar}" />
+            </p:commandButton>
+        </p:column>
+    </p:dataTable>
 	</ui:define>
 </ui:composition>
 </html>
