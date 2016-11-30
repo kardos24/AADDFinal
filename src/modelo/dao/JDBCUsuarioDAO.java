@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.LinkedList;
+import java.util.List;
 
 import javax.sql.DataSource;
 
@@ -126,6 +128,33 @@ public class JDBCUsuarioDAO implements UsuarioDAO {
 			con.close();
 
 			return usu;
+		} catch (SQLException e) {
+			throw new DAOException(e.getMessage());
+		}
+	}
+
+	@Override
+	public List<Usuario> findAll() throws DAOException {
+
+		Connection con = null;
+		PreparedStatement stmt = null;
+		try {
+			con = ds.getConnection();
+			stmt = con.prepareStatement("SELECT nif,nombre,usuario,clave,email FROM Usuario");
+			ResultSet rs = stmt.executeQuery();
+
+			List<Usuario> ususList = new LinkedList<>();
+			if (rs.next()) {
+				Usuario usu = new Usuario(rs.getString("nif"), rs.getString("nobmre"),
+						rs.getString("usuario"), rs.getString("clave"),
+						rs.getString("email"));
+				ususList.add(usu);
+			}
+
+			stmt.close();
+			con.close();
+
+			return ususList;
 		} catch (SQLException e) {
 			throw new DAOException(e.getMessage());
 		}

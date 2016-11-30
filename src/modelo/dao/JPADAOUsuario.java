@@ -1,7 +1,11 @@
 package modelo.dao;
 
+import java.util.LinkedList;
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.Query;
 
 import modelo.Usuario;
 
@@ -44,6 +48,18 @@ public class JPADAOUsuario implements UsuarioDAO {
 	public Usuario findByUsuario(String usuario) throws DAOException {
 		Usuario usuJPA = em.find(Usuario.class, usuario);
 		return usuJPA;
+	}
+
+	@Override
+	public List<Usuario> findAll() throws DAOException {
+		Query query = em.createQuery("SELECT u FROM Usuario");
+		List<Usuario> resultList = new LinkedList<Usuario>();
+		try{
+			resultList = (List<Usuario>) query.getResultList();
+		} catch(Exception e ){
+			throw new DAOException(e.getMessage());
+		}
+		return resultList;
 	}
 
 }

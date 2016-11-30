@@ -1,14 +1,11 @@
 package controlador;
 
 import java.util.LinkedList;
-import java.util.Objects;
-
-
 import java.util.List;
+import java.util.Objects;
 
 import modelo.Catalogo;
 import modelo.Usuario;
-import modelo.dao.CatalogoDAO;
 import modelo.dao.DAOException;
 import modelo.dao.DAOFactoria;
 import modelo.dao.UsuarioDAO;
@@ -87,8 +84,11 @@ public class Controlador {
 
 	public List<Usuario> recuperarUsuarios() {
 		UsuarioDAO usuarioDao = factoria.getUsuarioDAO();
-//		return usuarioDao.findAll();
-		return null;
+		try {
+			return usuarioDao.findAll();
+		} catch (DAOException e) {
+			return new LinkedList<Usuario>();
+		}
 	}
 
 

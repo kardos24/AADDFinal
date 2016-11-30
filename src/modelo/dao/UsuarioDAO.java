@@ -1,6 +1,7 @@
 package modelo.dao;
 
-import modelo.Catalogo;
+import java.util.List;
+
 import modelo.Usuario;
 
 public interface UsuarioDAO {
@@ -9,4 +10,6 @@ public interface UsuarioDAO {
 	void update(Usuario usuario) throws DAOException;
 	
 	Usuario findByUsuario(String usuario) throws DAOException;
+	
+	List<Usuario> findAll() throws DAOException;
 }
