@@ -1,8 +1,13 @@
-package modelo.dao;
+package modelo.dao.JPA;
 
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
+
+import modelo.dao.CatalogoDAO;
+import modelo.dao.CategoriaDAO;
+import modelo.dao.DAOFactoria;
+import modelo.dao.UsuarioDAO;
 
 public class JPADAOFactoria extends DAOFactoria {
 //	@PersistenceContext ( unitName ="PracticaAADDFinal")

@@ -1,4 +1,4 @@
-package modelo.dao;
+package modelo.dao.JPA;
 
 import java.util.Date;
 import java.util.List;
@@ -8,6 +8,8 @@ import javax.persistence.EntityManagerFactory;
 
 import modelo.Catalogo;
 import modelo.Usuario;
+import modelo.dao.CatalogoDAO;
+import modelo.dao.DAOException;
 
 public class JPADAOCatalogo implements CatalogoDAO {
 

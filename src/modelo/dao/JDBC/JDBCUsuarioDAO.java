@@ -1,4 +1,4 @@
-package modelo.dao;
+package modelo.dao.JDBC;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -11,6 +11,8 @@ import javax.sql.DataSource;
 
 import modelo.Catalogo;
 import modelo.Usuario;
+import modelo.dao.DAOException;
+import modelo.dao.UsuarioDAO;
 
 public class JDBCUsuarioDAO implements UsuarioDAO {
 

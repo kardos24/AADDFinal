@@ -1,8 +1,9 @@
-package modelo.dao;
+package modelo.dao.JDBC;
 
 import javax.sql.DataSource;
 
 import modelo.Categoria;
+import modelo.dao.CategoriaDAO;
 
 public class JDBCCategoriaDAO implements CategoriaDAO {
 

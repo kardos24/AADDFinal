@@ -1,4 +1,4 @@
-package modelo.dao;
+package modelo.dao.JPA;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -8,6 +8,8 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Query;
 
 import modelo.Usuario;
+import modelo.dao.DAOException;
+import modelo.dao.UsuarioDAO;
 
 public class JPADAOUsuario implements UsuarioDAO {
 

@@ -1,9 +1,14 @@
-package modelo.dao;
+package modelo.dao.JDBC;
 
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
+import modelo.dao.CatalogoDAO;
+import modelo.dao.CategoriaDAO;
+import modelo.dao.DAOException;
+import modelo.dao.DAOFactoria;
+import modelo.dao.UsuarioDAO;
 import pool.ConnectionPool;
 
 public class JDBCDAOFactoria extends DAOFactoria {

@@ -1,4 +1,4 @@
-package modelo.dao;
+package modelo.dao.JDBC;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -12,6 +12,8 @@ import javax.sql.DataSource;
 import controlador.Controlador;
 import modelo.Catalogo;
 import modelo.Usuario;
+import modelo.dao.CatalogoDAO;
+import modelo.dao.DAOException;
 
 public class JDBCCatalogoDAO implements CatalogoDAO {
 

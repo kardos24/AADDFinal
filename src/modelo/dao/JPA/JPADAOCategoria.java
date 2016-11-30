@@ -1,10 +1,12 @@
-package modelo.dao;
+package modelo.dao.JPA;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 
 import modelo.Catalogo;
 import modelo.Categoria;
+import modelo.dao.CategoriaDAO;
+import modelo.dao.DAOException;
 
 public class JPADAOCategoria implements CategoriaDAO {
 
