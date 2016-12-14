@@ -1,7 +1,5 @@
 package modelo.dao;
 
-import modelo.dao.JDBC.JDBCDAOFactoria;
-import modelo.dao.JPA.JPADAOFactoria;
 
 public abstract class DAOFactoria {
 	// Metodos factoria
