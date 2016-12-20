@@ -23,13 +23,13 @@ public class Catalogo {
 	private String web;
 	private String url;
 
-	@ManyToMany
 	@OrderBy("nombre DESC")
+	@ManyToMany
 	private List<Categoria> categorias;
 	@ManyToOne
 	private Usuario usuario;
-	@OneToMany(mappedBy="catalogo")
-	private List<Item> items;
+	@OneToMany
+	private List<VideojuegoItem> items;
 
 	public Catalogo() {
 	}
@@ -93,15 +93,15 @@ public class Catalogo {
 		this.usuario = usuario;
 	}
 
-	public List<Item> getItems() {
+	public List<VideojuegoItem> getItems() {
 		return items;
 	}
 
-	public void setItems(List<Item> items) {
+	public void setItems(List<VideojuegoItem> items) {
 		this.items = items;
 	}
 	
-	public void addItem(Item item){
+	public void addItem(VideojuegoItem item){
 		items.add(item);
 	}
 

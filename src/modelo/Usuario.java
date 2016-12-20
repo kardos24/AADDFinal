@@ -15,7 +15,7 @@ public class Usuario {
 	private String usuario;
 	private String clave;
 	private String email;
-	@OneToMany(mappedBy = "usuario")
+	@OneToMany(mappedBy="usuario")
 	private List<Catalogo> catalogos;
 
 	public Usuario() {

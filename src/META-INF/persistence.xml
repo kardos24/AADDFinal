@@ -8,7 +8,7 @@
 		<class>modelo.Usuario</class> 
 		<class>modelo.Catalogo</class>
 		<class>modelo.Categoria</class>
-		<class>modelo.Item</class>
+		<class>modelo.VideojuegoItem</class>
 
 		<properties>
 	
