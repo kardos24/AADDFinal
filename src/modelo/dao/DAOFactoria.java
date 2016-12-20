@@ -6,6 +6,7 @@ public abstract class DAOFactoria {
 	public abstract UsuarioDAO getUsuarioDAO();
 	public abstract CategoriaDAO getCategoriaDAO();
 	public abstract CatalogoDAO getCatalogoDAO();
+	public abstract VideojuegoItemDAO getVideojuegoItemDAO();
 
 	// Declaracion como constantes de los tipos de factoria
 	public final static int JDBC = 1;

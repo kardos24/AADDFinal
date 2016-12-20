@@ -7,6 +7,7 @@ import javax.sql.DataSource;
 import modelo.dao.JDBC.JDBCCatalogoDAO;
 import modelo.dao.JDBC.JDBCCategoriaDAO;
 import modelo.dao.JDBC.JDBCUsuarioDAO;
+import modelo.dao.JDBC.JDBCVideojuegoItemDAO;
 import pool.ConnectionPool;
 
 public class JDBCDAOFactoria extends DAOFactoria {
@@ -38,6 +39,11 @@ public class JDBCDAOFactoria extends DAOFactoria {
 	@Override
 	public CatalogoDAO getCatalogoDAO() {
 		return (CatalogoDAO) new JDBCCatalogoDAO(ds);
+	}
+
+	@Override
+	public VideojuegoItemDAO getVideojuegoItemDAO() {
+		return (VideojuegoItemDAO) new JDBCVideojuegoItemDAO(ds);
 	}
 
 }

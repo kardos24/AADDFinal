@@ -7,6 +7,7 @@ import javax.persistence.PersistenceContext;
 import modelo.dao.JPA.JPADAOCatalogo;
 import modelo.dao.JPA.JPADAOCategoria;
 import modelo.dao.JPA.JPADAOUsuario;
+import modelo.dao.JPA.JPADAOVideojuegoItem;
 
 public class JPADAOFactoria extends DAOFactoria {
 //	@PersistenceContext ( unitName ="PracticaAADDFinal")
@@ -28,6 +29,10 @@ public class JPADAOFactoria extends DAOFactoria {
 	@Override
 	public CatalogoDAO getCatalogoDAO() {
 		return new JPADAOCatalogo(emf);
+	}
+	@Override
+	public VideojuegoItemDAO getVideojuegoItemDAO() {
+		return new JPADAOVideojuegoItem(emf);
 	}
 
 }

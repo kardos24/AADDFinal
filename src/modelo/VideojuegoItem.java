@@ -20,7 +20,7 @@ public class VideojuegoItem {
 	private String generoPrincipal;		// Columna 7 
 	private String generoSecundario;	// Columna 9
 	private String generoOtros;			// Columna 11
-	private String descripción;			// Columna 14
+	private String descripcion;			// Columna 14
 	private String nota;				// Columna 6
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date fechaLanzamiento;		// Columna 13
@@ -38,13 +38,13 @@ public class VideojuegoItem {
 	}
 
 	public VideojuegoItem(String nombre, String generoPrincipal, String generoSecundario, String generoOtros,
-			String descripción, String nota, Date fechaLanzamiento, String urlFoto, String urlFicha) {
+			String descripcion, String nota, Date fechaLanzamiento, String urlFoto, String urlFicha) {
 		this();
 		this.nombre = nombre;
 		this.generoPrincipal = generoPrincipal;
 		this.generoSecundario = generoSecundario;
 		this.generoOtros = generoOtros;
-		this.descripción = descripción;
+		this.descripcion = descripcion;
 		this.nota = nota;
 		this.fechaLanzamiento = fechaLanzamiento;
 		this.urlFoto = urlFoto;
@@ -91,12 +91,12 @@ public class VideojuegoItem {
 		this.generoOtros = generoOtros;
 	}
 
-	public String getDescripción() {
-		return descripción;
+	public String getDescripcion() {
+		return descripcion;
 	}
 
-	public void setDescripción(String descripción) {
-		this.descripción = descripción;
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
 	}
 
 	public String getNota() {

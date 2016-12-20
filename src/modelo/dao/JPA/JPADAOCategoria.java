@@ -35,7 +35,7 @@ public class JPADAOCategoria implements CategoriaDAO {
 
 	@Override
 	public List<Categoria> findAll() throws DAOException {
-		TypedQuery<Categoria> query = em.createQuery("SELECT a FROM Asistente a", Categoria.class);
+		TypedQuery<Categoria> query = em.createQuery("SELECT c FROM Categoria c", Categoria.class);
 		List<Categoria> resultList = new LinkedList<Categoria>();
 		try {
 			resultList = query.getResultList();

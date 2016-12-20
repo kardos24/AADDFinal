@@ -1,5 +1,6 @@
-import java.io.FileReader;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.Reader;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -9,15 +10,15 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
+
+import modelo.Categoria;
+import modelo.VideojuegoItem;
 
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVRecord;
 
 import controlador.Controlador;
-import modelo.Categoria;
-import modelo.VideojuegoItem;
 
 public class ProgramaImportacionDatos {
 
@@ -29,7 +30,7 @@ public class ProgramaImportacionDatos {
 	public static void main(String[] args) {
 		Iterable<CSVRecord> records;
 		try {
-			Reader in = new FileReader(DIREC_FILE + NAME_FILE);
+			Reader in = new InputStreamReader(new FileInputStream(DIREC_FILE + NAME_FILE), "UTF-8"); // new FileReader(DIREC_FILE + NAME_FILE);
 			records = CSVFormat.RFC4180.parse(in);
 			int row = 0;
 			iniciarCategoriaMap();
@@ -39,8 +40,9 @@ public class ProgramaImportacionDatos {
 				for (int i = 0; i < record.size(); i++) {
 					String column = record.get(i);
 					System.out.print("[Column" + i + "=" + column + "]");
-					rellenarParametro(juego, i, column);
+					rellenarParametro(juego, i, column.trim());
 				}
+				Controlador.getInstance().registrarJuego(juego);
 				System.out.println();
 				row++;
 			}
@@ -70,7 +72,7 @@ public class ProgramaImportacionDatos {
 			juego.setGeneroOtros(column);
 			break;
 		case 14:
-			juego.setDescripción(column);
+			juego.setDescripcion(column);
 			break;
 		case 6:
 			juego.setNota(column);
@@ -92,7 +94,7 @@ public class ProgramaImportacionDatos {
 
 	private static List<Categoria> getPlataformas(String column) {
 		List<Categoria> categorias = new LinkedList<>();
-		Arrays.asList(column.split(";")).forEach((platf) -> {
+		Arrays.asList(column.split(";")).stream().map(String::trim).forEach((platf) -> {
 			Categoria cat = categoriaMap.get(platf);
 			if (cat == null) {
 				cat = Controlador.getInstance().registrarCategoria(platf);

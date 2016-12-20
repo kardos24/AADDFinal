@@ -1,5 +1,6 @@
 package controlador;
 
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
@@ -7,10 +8,12 @@ import java.util.Objects;
 import modelo.Catalogo;
 import modelo.Categoria;
 import modelo.Usuario;
+import modelo.VideojuegoItem;
 import modelo.dao.CategoriaDAO;
 import modelo.dao.DAOException;
 import modelo.dao.DAOFactoria;
 import modelo.dao.UsuarioDAO;
+import modelo.dao.VideojuegoItemDAO;
 
 public class Controlador {
 
@@ -110,6 +113,20 @@ public class Controlador {
 		} catch (DAOException e) {
 			return new LinkedList<Categoria>();
 		}
+	}
+
+	public VideojuegoItem registrarJuego(VideojuegoItem juego) {
+		return registrarJuego(juego.getNombre(), juego.getGeneroPrincipal(), juego.getGeneroSecundario(), juego.getGeneroOtros(), juego.getDescripcion(), juego.getNota(), juego.getFechaLanzamiento(), juego.getUrlFoto(), juego.getUrlFicha(), juego.getPlataformas());		
+	}
+
+	public VideojuegoItem registrarJuego(String nombre, String genero1, String genero2, String genero3, String descripcion, String nota, Date fechaLanzamiento, String urlFoto, String urlFicha, List<Categoria> plataformas) {
+		VideojuegoItemDAO videojuegoItemDAO = factoria.getVideojuegoItemDAO();
+		try {
+			return videojuegoItemDAO.create(nombre, genero1, genero2, genero3, descripcion, nota, fechaLanzamiento, urlFoto, urlFicha, plataformas);
+		} catch (DAOException e) {
+			return null;
+		}
+		
 	}
 
 
