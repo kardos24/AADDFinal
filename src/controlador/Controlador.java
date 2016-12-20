@@ -103,6 +103,15 @@ public class Controlador {
 		
 	}
 
+	public List<Categoria> recuperarCategorias() {
+		CategoriaDAO categoriaDao = factoria.getCategoriaDAO();
+		try {
+			return categoriaDao.findAll();
+		} catch (DAOException e) {
+			return new LinkedList<Categoria>();
+		}
+	}
+
 
 
 }

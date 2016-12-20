@@ -9,6 +9,8 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVRecord;
@@ -30,6 +32,7 @@ public class ProgramaImportacionDatos {
 			Reader in = new FileReader(DIREC_FILE + NAME_FILE);
 			records = CSVFormat.RFC4180.parse(in);
 			int row = 0;
+			iniciarCategoriaMap();
 			for (CSVRecord record : records) {
 				System.out.println("[Row" + row + "]");
 				VideojuegoItem juego = new VideojuegoItem();
@@ -45,6 +48,11 @@ public class ProgramaImportacionDatos {
 			e.printStackTrace();
 		}
 
+	}
+
+	private static void iniciarCategoriaMap() {
+		List<Categoria> categoriasList = Controlador.getInstance().recuperarCategorias();
+		categoriaMap = categoriasList.stream().collect(Collectors.toMap(cat->cat.getNombre(), cat->cat));		
 	}
 
 	private static void rellenarParametro(VideojuegoItem juego, int i, String column) {
