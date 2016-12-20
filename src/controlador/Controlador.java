@@ -5,7 +5,9 @@ import java.util.List;
 import java.util.Objects;
 
 import modelo.Catalogo;
+import modelo.Categoria;
 import modelo.Usuario;
+import modelo.dao.CategoriaDAO;
 import modelo.dao.DAOException;
 import modelo.dao.DAOFactoria;
 import modelo.dao.UsuarioDAO;
@@ -89,6 +91,16 @@ public class Controlador {
 		} catch (DAOException e) {
 			return new LinkedList<Usuario>();
 		}
+	}
+
+	public Categoria registrarCategoria(String nombreCategoria) {
+		CategoriaDAO categoriaDAO = factoria.getCategoriaDAO();
+		try {
+			return categoriaDAO.create(nombreCategoria);
+		} catch (DAOException e) {
+			return null;
+		}
+		
 	}
 
 
