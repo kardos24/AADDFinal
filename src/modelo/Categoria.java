@@ -9,8 +9,6 @@ import javax.persistence.Id;
 public class Categoria {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int codigo;
 	private String nombre;
 
 	public Categoria() {
@@ -19,14 +17,6 @@ public class Categoria {
 	public Categoria(String nombre) {
 		super();
 		this.nombre = nombre;
-	}
-
-	public int getCodigo() {
-		return codigo;
-	}
-
-	public void setCodigo(int codigo) {
-		this.codigo = codigo;
 	}
 
 	public String getNombre() {

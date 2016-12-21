@@ -4,10 +4,12 @@ import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -20,6 +22,7 @@ public class VideojuegoItem {
 	private String generoPrincipal;		// Columna 7 
 	private String generoSecundario;	// Columna 9
 	private String generoOtros;			// Columna 11
+	@Column(length=1500)
 	private String descripcion;			// Columna 14
 	private String nota;				// Columna 6
 	@Temporal(TemporalType.TIMESTAMP)
@@ -28,6 +31,7 @@ public class VideojuegoItem {
 	private String urlFoto;				// Columna 1
 	private String urlFicha;			// Columna 3
 	
+	@OneToMany
 	private List<Categoria> plataformas;
 	
 	
