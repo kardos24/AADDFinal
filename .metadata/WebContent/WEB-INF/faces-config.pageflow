@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf14797401239380" configfile="/AADDFinal/WebContent/WEB-INF/faces-config.xml">
+<pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf14797401239380" configfile="/PracticaAADDFinal/WebContent/WEB-INF/faces-config.xml">
   <nodes xsi:type="pageflow:PFPage" name="registrarUsuario" x="48" y="84" id="pf14797405164591" referenceLink="//@navigationRule.4/@fromViewId|" outlinks="pf147974113876910 pf147974247752213" inlinks="pf147974113876911" path="/registrarUsuario.jsp"/>
   <nodes xsi:type="pageflow:PFPage" name="errorRegistroUsuario" x="60" y="300" id="pf14797405905126" referenceLink="//@navigationRule.3/@fromViewId|" outlinks="pf147974113876911 pf147974113876912" inlinks="pf147974113876910" path="/errorRegistroUsuario.jsp"/>
   <nodes xsi:type="pageflow:PFPage" name="index.xhtml" x="312" y="288" id="pf14797407312588" referenceLink="//@navigationRule.3/@navigationCase.0/@toViewId|" inlinks="pf147974113876912" path="/ServletLogin"/>
   <nodes xsi:type="pageflow:PFPage" name="main" x="319" y="72" id="pf147974247752214" referenceLink="//@navigationRule.4/@navigationCase.0/@toViewId|" inlinks="pf147974247752213" path="/main.jsp"/>
-  <links id="pf147974113876910" target="pf14797405905126" source="pf14797405164591" outcome="error_registro"/>
-  <links id="pf147974113876911" target="pf14797405164591" source="pf14797405905126" outcome="volver"/>
-  <links id="pf147974113876912" target="pf14797407312588" source="pf14797405905126" outcome="login"/>
-  <links id="pf147974247752213" target="pf147974247752214" source="pf14797405164591" outcome="exito"/>
+  <links id="pf147974113876910" target="pf14797405905126" source="pf14797405164591"/>
+  <links id="pf147974113876911" target="pf14797405164591" source="pf14797405905126"/>
+  <links id="pf147974113876912" target="pf14797407312588" source="pf14797405905126"/>
+  <links id="pf147974247752213" target="pf147974247752214" source="pf14797405164591"/>
 </pageflow:Pageflow>
