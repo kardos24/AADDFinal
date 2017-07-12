@@ -22,7 +22,7 @@ public class Controlador {
 	
 	private Controlador() {
 		try {
-			controlador = (ControladorEJBRemote) new InitialContext().lookup("java:global/PracticaAADDFinal_EJB/ControladorEJB");
+			controlador = (ControladorEJBRemote) new InitialContext().lookup("java:global/EJBTest/ControladorEJB");
 		} catch (NamingException e) {
 			e.printStackTrace();
 		}

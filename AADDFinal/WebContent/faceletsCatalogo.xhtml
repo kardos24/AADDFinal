@@ -38,17 +38,17 @@
 							<h:outputText value="Catalogos" />
 						</f:facet>
 
-						<p:fieldset legend="#cat.nombre" toggleable="true"
+						<p:fieldset legend="#juego.nombre" toggleable="true"
 							toggleSpeed="500">
 							<h:panelGrid column="3" cellpadding="5">
 								<h:panelGrid column="2">
-									<h:outputText value="Nombre: #{cat.nombre}" />
-									<h:outputText value="Fecha: #{cat.fecha}" />
+									<h:outputText value="Nombre: #{juego.nombre}" />
+									<h:outputText value="Genero: #{juego.generoPricipal}" />
 								</h:panelGrid>
 								<h:panelGrid column="3">
-									<h:outputText value="Web: #{cat.web}" />
-									<h:outputText value="Url: #{cat.url}" />
-									<h:outputText value="Categorias: #{cat.categorias}" />
+									<h:outputText value="Web: #{juego.urlFicha}" />
+									<h:outputText value="Nota: #{juego.nota}" />
+									<h:outputText value="Fecha: #{juego.fechaLanzamiento}" />
 								</h:panelGrid>
 								<h:panelGrid column="3">
 									<h:form>
@@ -74,15 +74,13 @@
 							<a href="#{BeanJuego.urlFicha}"> <img
 								src="#{BeanJuego.urlFoto}" />
 							</a>
-							<h:outputLabel value="#{BeanJuego.nombre}" />
-							<h:outputLabel value="#{BeanJuego.generoPricipal}" />
+							<h:outputLabel value="Nombre: #{BeanJuego.nombre}" />
+							<h:outputLabel value="GeneroPrincipal: #{BeanJuego.generoPricipal}" />
 							<h:outputLabel value="#{BeanJuego.generoSecundario}" />
 							<h:outputLabel value="#{BeanJuego.descripcion}" />
 							<h:outputLabel value="#{BeanJuego.nota}" />
 							<h:outputLabel value="#{BeanJuego.fechaLanzamiento}" />
 							<h:outputLabel value="#{BeanJuego.plataformas}" />
-							<h:outputLabel value="#{BeanJuego.nombre}" />
-							<h:outputLabel value="#{BeanJuego.nombre}" />
 						</p:outputPanel>
 					</p:dialog>
 				</h:form>
