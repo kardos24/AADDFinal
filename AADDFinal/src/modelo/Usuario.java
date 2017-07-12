@@ -1,6 +1,5 @@
 package modelo;
 
-import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -9,10 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 @Entity
-public class Usuario implements Serializable{
-	
-	private static final long serialVersionUID = 3L;
-	
+public class Usuario {
 	private String nif;
 	private String nombre;
 	@Id

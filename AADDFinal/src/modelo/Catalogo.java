@@ -1,6 +1,5 @@
 package modelo;
 
-import java.io.Serializable;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
@@ -15,9 +14,8 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-public class Catalogo implements Serializable{
-	
-	private static final long serialVersionUID = 1L;
+public class Catalogo {
+
 	@Id
 	private String nombre;
 	@Temporal(TemporalType.TIMESTAMP)
@@ -43,7 +41,6 @@ public class Catalogo implements Serializable{
 		this.fecha = fecha;
 		this.web = web;
 		this.url = url;
-		this.items = new LinkedList<>();
 		this.categorias = new LinkedList<Categoria>();
 		this.usuario = usuario;
 	}
