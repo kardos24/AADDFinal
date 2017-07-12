@@ -1,0 +1,16 @@
+0
+1=urlFoto
+2=nameFoto
+3=urlFicha
+4=name
+5=urlFicha
+6=nota
+7=genero
+8=urlJuegosSimilares
+9=generoSecundario
+10=urlJuegosSimilares
+11=otrosGeneros
+12=urlJuegosOtrosGeneros
+13=fechaLanzamiento
+14=descripcion
+15=plataformas

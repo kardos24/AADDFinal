@@ -1,0 +1,93 @@
+.body {
+	width: 100%;
+	height: 100%;
+	font-family: 'Trocchi', serif;
+}
+
+.header, .nav, .content, .footer {
+}
+
+.header, .nav, .footer {
+	background-color: #87BEE5;
+}
+
+.header {
+	padding: 20px;
+	text-align: center;
+}
+
+.nav {
+min-width: 100%;
+	display: inline-block;
+}
+
+.content{
+	background-color:#DCF5F7;
+}
+
+.footer {
+	text-align: center;
+	font-weight: bold;
+	padding: 5px;
+}
+
+h1 {
+	color: #01021A;
+	font-size: 45px;
+	font-weight: normal;
+	line-height: 48px;
+	margin: 0;
+}
+
+input {
+	margin: 10px;
+	padding: 5px;
+	border: 2px solid #3232F1;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+	font-weight: bold;
+	background-color: white;
+	cursor: pointer;
+}
+
+input :hover{
+	border-color: black;
+	box-shadow: 5px 5px #96F2F9;
+}
+
+.title {
+	padding: 20px;
+	font-size:25px;
+}
+
+.main {
+	padding: 20px;
+}
+
+.nav input {
+	display: inline;
+	background-color: #DCF5F7;
+}
+
+.nav input[type=submit] {
+	display: inline;
+	float: left;
+}
+
+.nav input[type=file] {
+	display: inline;
+	float: right;
+}
+
+.disable {
+margin: 0px 0px 0px 10px;
+	border: 2px solid #3232F1;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+	font-weight: bold;
+	background-color: #DCF5F7;	
+}
+
+.ui-fileupload-content {
+	display: none;
+}

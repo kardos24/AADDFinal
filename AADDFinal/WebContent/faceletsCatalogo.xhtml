@@ -1,0 +1,97 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+<f:loadBundle basename="resources.application" var="msg" />
+
+<h:head>
+	<f:facet name="last">
+		<link rel="stylesheet" type="text/css"
+			href="#{facesContext.externalContext.requestContextPath}/css/style.css" />
+	</f:facet>
+</h:head>
+<h:body>
+	<!-- 		<h:outputStylesheet library="css" name="css/style.css" /> -->
+	<h:panelGroup layout="block" class="header">
+		<h1>Practica AADD Welcome</h1>
+	</h:panelGroup>
+	<h:panelGroup layout="block" class="nav">
+		<h:form>
+			<h:commandButton value="Inicio" id="home"
+				action="#{beanLogin2.goHome}">
+			</h:commandButton>
+		</h:form>
+	</h:panelGroup>
+	<h:panelGroup layout="block" class="content">
+		<h:panelGroup layout="block" class="main">
+			<h:panelGroup layout="block" class="content_main">
+				<h:form>
+					<p:dataList value="#{BeanJuego.juegos}" var="juego"
+						type="definition">
+						<f:facet name="header">
+							<h:outputText value="Catalogos" />
+						</f:facet>
+
+						<p:fieldset legend="#cat.nombre" toggleable="true"
+							toggleSpeed="500">
+							<h:panelGrid column="3" cellpadding="5">
+								<h:panelGrid column="2">
+									<h:outputText value="Nombre: #{cat.nombre}" />
+									<h:outputText value="Fecha: #{cat.fecha}" />
+								</h:panelGrid>
+								<h:panelGrid column="3">
+									<h:outputText value="Web: #{cat.web}" />
+									<h:outputText value="Url: #{cat.url}" />
+									<h:outputText value="Categorias: #{cat.categorias}" />
+								</h:panelGrid>
+								<h:panelGrid column="3">
+									<h:form>
+										<h:commandButton value="Ver Detalle" id="showDetail"
+											oncomplete="PF('showDetail').show()"
+											actionListener="#{BeanJuego.seleccionarJuego }">
+											<f:param id="id_juegoBorrar" value="#{juego.id }" />
+										</h:commandButton>
+										<h:commandButton value="Borrar" id="borrarGame" update="@form"
+											actionListener="#{BeanJuego.borrarJuego }">
+											<f:param id="id_juegoBorrar" value="#{juego.id }" />
+										</h:commandButton>
+									</h:form>
+								</h:panelGrid>
+							</h:panelGrid>
+						</p:fieldset>
+					</p:dataList>
+
+					<p:dialog header="Añadir o eliminar categorias"
+						widgetVar="showDetail" modal="true" showEffect="blind"
+						hideEffect="explode" resizable="false">
+						<p:outputPanel id="showJueg" style="text-align:center;">
+							<a href="#{BeanJuego.urlFicha}"> <img
+								src="#{BeanJuego.urlFoto}" />
+							</a>
+							<h:outputLabel value="#{BeanJuego.nombre}" />
+							<h:outputLabel value="#{BeanJuego.generoPricipal}" />
+							<h:outputLabel value="#{BeanJuego.generoSecundario}" />
+							<h:outputLabel value="#{BeanJuego.descripcion}" />
+							<h:outputLabel value="#{BeanJuego.nota}" />
+							<h:outputLabel value="#{BeanJuego.fechaLanzamiento}" />
+							<h:outputLabel value="#{BeanJuego.plataformas}" />
+							<h:outputLabel value="#{BeanJuego.nombre}" />
+							<h:outputLabel value="#{BeanJuego.nombre}" />
+						</p:outputPanel>
+					</p:dialog>
+				</h:form>
+			</h:panelGroup>
+		</h:panelGroup>
+	</h:panelGroup>
+	<h:panelGroup layout="block" class="footer">
+		<h:outputText
+			value="Realizada por Daniel Cardós Martínez para la asignatura de Aplicaciones Distribuidas" />
+	</h:panelGroup>
+</h:body>
+</html>

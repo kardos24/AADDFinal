@@ -1,0 +1,82 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+<f:loadBundle basename="resources.application" var="msg" />
+
+
+<h:head>
+	<f:facet name="last">
+		<link rel="stylesheet" type="text/css"
+			href="#{facesContext.externalContext.requestContextPath}/css/style.css" />
+	</f:facet>
+</h:head>
+<h:body>
+	<h:panelGroup layout="block" class="header">
+		<h1>Practica AADD Registro</h1>
+	</h:panelGroup>
+	<h:panelGroup layout="block" class="body">
+		<h:panelGroup layout="block" class="nav">
+			<h:form>
+				<h:commandButton value="Volver" id="back"
+					action="#{BeanRegistrar2.goLogin}">
+				</h:commandButton>
+			</h:form>
+		</h:panelGroup>
+		<h:panelGroup layout="block" class="content">
+			<h:panelGroup layout="block" class="main">
+				<h:form id="RegitroForm">
+					<h:panelGrid columns="3">
+						<h:outputText value="Usuario: " />
+						<h:inputText id="usuario" value="#{BeanRegistrar2.usuario}"
+							required="true">
+							<f:validateBean />
+						</h:inputText>
+						<h:message for="usuario" />
+
+						<h:outputText value="Nombre: " />
+						<h:inputText id="nombre" value="#{BeanRegistrar2.nombre}"
+							required="true">
+							<f:validateBean />
+							<f:ajax execute="nombre" render="nameError" />
+						</h:inputText>
+						<h:message for="nombre" />
+
+						<h:outputText value="NIF: " />
+						<h:inputText id="nif" value="#{BeanRegistrar2.nif}"
+							required="true">
+						</h:inputText>
+						<h:message for="nif" />
+
+						<h:outputText value="Email: " />
+						<h:inputText id="email" value="#{BeanRegistrar2.email}"
+							required="true" validator="#{BeanRegistrar2.validarMail }">
+						</h:inputText>
+						<h:message for="email" />
+
+						<h:outputText value="Clave: " />
+						<h:inputSecret id="clave" value="#{BeanRegistrar2.clave}"
+							required="true" />
+						<h:message for="clave" />
+
+						<h:outputText value="Repetir Clave: " />
+						<h:inputSecret id="clave2" value="#{BeanRegistrar2.clave2}"
+							required="true" />
+						<h:message for="clave2" />
+					</h:panelGrid>
+					<h:commandButton id="submit" action="#{BeanRegistrar2.registrar}"
+						value="Registrar" />
+					<br />
+				</h:form>
+			</h:panelGroup>
+		</h:panelGroup>
+	</h:panelGroup>
+	<h:panelGroup layout="block" class="footer">
+		<h:outputText
+			value="Realizada por Daniel Cardós Martínez para la asignatura de Aplicaciones Distribuidas" />
+	</h:panelGroup>
+</h:body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+<f:loadBundle basename="resources.application" var="msg" />
+
+<h:head>
+	<f:facet name="last">
+		<link rel="stylesheet" type="text/css"
+			href="#{facesContext.externalContext.requestContextPath}/css/style.css" />
+	</f:facet>
+</h:head>
+<h:body>
+	<!-- 		<h:outputStylesheet library="css" name="css/style.css" /> -->
+	<h:panelGroup layout="block" class="header">
+		<h1>Practica AADD Usuario</h1>
+	</h:panelGroup>
+	<h:panelGroup layout="block" class="nav">
+		<h:form>
+			<h:commandButton value="Inicio" id="home"
+				action="#{beanLogin2.goHome}">
+			</h:commandButton>
+			<h:commandButton value="Logout" id="logout"
+				action="#{beanLogin2.logout}">
+			</h:commandButton>
+			<p:fileUpload fileUploadListener="#{BeanListarUsuarios.loadFile2}"
+				auto="true" mode="simple" label="Elige..." required="false"
+				showButtons="false" />
+		</h:form>
+	</h:panelGroup>
+	<h:panelGroup layout="block" class="content">
+		<h:form id="RegitroForm">
+			<h:panelGrid columns="3">
+				<h:outputText value="Usuario: " />
+				<h:outputText class="disable" value="#{BeanListarUsuarios.login} " />
+				<h:outputText value="" />
+
+				<h:outputText value="Nombre: " />
+				<h:inputText id="nombre" value="#{BeanListarUsuarios.nombre}"
+					required="true">
+					<f:validateBean />
+					<f:ajax execute="nombre" render="nameError" />
+				</h:inputText>
+				<h:message for="nombre" />
+
+				<h:outputText value="NIF: " />
+				<h:inputText id="nif" value="#{BeanListarUsuarios.nif}"
+					required="true">
+				</h:inputText>
+				<h:message for="nif" />
+
+				<h:outputText value="Email: " />
+				<h:inputText id="email" value="#{BeanListarUsuarios.email}"
+					required="true" validator="#{BeanListarUsuarios.validarMail }">
+				</h:inputText>
+				<h:message for="email" />
+
+				<h:outputText value="Clave: " />
+				<h:inputSecret id="clave" value="#{BeanListarUsuarios.clave}"
+					required="true" />
+				<h:message for="clave" />
+			</h:panelGrid>
+			<h:commandButton id="submit" action="#{BeanListarUsuarios.modificar}"
+				value="Guardar cambios" />
+			<br />
+		</h:form>
+	</h:panelGroup>
+	<h:panelGroup layout="block" class="footer">
+		<h:outputText
+			value="Realizada por Daniel Cardós Martínez para la asignatura de Aplicaciones Distribuidas" />
+	</h:panelGroup>
+</h:body>
+</html>
